@@ -27,4 +27,31 @@ export class PdfDownloadService {
       responseType: 'blob' // Important for handling binary data
     });
   }
+  downloadBeneficiaryPdf(): Observable<Blob> {
+    const token = localStorage.getItem('token'); // Fetch the token from local storage
+
+    let headers = new HttpHeaders();
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+
+    return this.http.get(`${this.baseUrl}/beneficiaries`, {
+      headers: headers,
+      responseType: 'blob', // Set response type to blob for handling binary data (PDF)
+    });
+  }
+   // Fetch token and download Client PDF
+   downloadClientPdf(): Observable<Blob> {
+    const token = localStorage.getItem('token'); // Fetch token from local storage
+
+    let headers = new HttpHeaders();
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+
+    return this.http.get(`${this.baseUrl}/clients`, {
+      headers: headers,
+      responseType: 'blob' // Return Blob for PDF file
+    });
+  }
 }

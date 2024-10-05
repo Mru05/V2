@@ -1,5 +1,17 @@
+<!-- src/app/components/pdf-download/pdf-download.component.html -->
 <div class="container">
-    <h2>Employee List</h2>
-    <button class="btn btn-primary" (click)="downloadPdf()">Download Employee PDF</button>
-    <!-- You can also add your Employee List Table here if needed -->
+    <h2>Download PDFs</h2>
+    <!-- Employee PDF Download Button -->
+    <button (click)="downloadEmployeePdf()" class="btn btn-primary">Download Employee PDF</button>
+    
+    <!-- Beneficiary PDF Download Button -->
+    <button (click)="downloadBeneficiaryPdf()" class="btn btn-secondary">Download Beneficiary PDF</button>
 </div>
+<!-- src/app/components/pdf-download/pdf-download.component.html -->
+<div class="container">
+    <h2>Download Client PDF</h2>
+    
+    <!-- Button to download Client PDF -->
+    <button (click)="downloadClientPdf()" class="btn btn-success">Download Client PDF</button>
+  </div>
+  
