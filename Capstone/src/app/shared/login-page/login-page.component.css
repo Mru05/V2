@@ -1,0 +1,16 @@
+.card {
+    border-radius: 1rem;
+  }
+  
+  .btn-link {
+    color: #007bff; /* Bootstrap primary color */
+  }
+  
+  .btn-link:hover {
+    text-decoration: underline;
+  }
+
+  body{
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly off-white */
+
+  }

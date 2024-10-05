@@ -1,0 +1,31 @@
+<form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="registrationNumber" class="form-label">Client Registration Number</label>
+        <input id="registrationNumber" formControlName="registrationNumber" class="form-control" required />
+        <div *ngIf="documentForm.get('registrationNumber')?.invalid && documentForm.get('registrationNumber')?.touched" class="text-danger">
+            Client Registration Number is required.
+        </div>
+    </div>
+
+    <button type="submit" [disabled]="documentForm.invalid" class="btn btn-primary">Get Documents</button>
+</form>
+
+<!-- Display the list of documents retrieved -->
+<div *ngIf="documents.length > 0">
+    <h3>Documents Retrieved</h3>
+    <ul class="list-group">
+        <li *ngFor="let doc of documents" class="list-group-item">
+            <p><strong>Document ID:</strong> {{ doc.documentId }}</p>
+            <p><strong>Document Name:</strong> {{ doc.documentName }}</p>
+            <p>
+                <strong>Document URL:</strong> 
+                <a [href]="doc.documentUrl" target="_blank">{{ doc.documentUrl }}</a>
+            </p>
+        </li>
+    </ul>
+</div>
+
+<!-- Display error messages if any -->
+<div *ngIf="errorMessage" class="text-danger">
+    {{ errorMessage }}
+</div>

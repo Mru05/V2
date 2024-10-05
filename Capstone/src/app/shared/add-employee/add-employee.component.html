@@ -1,0 +1,98 @@
+<div class="container mt-5">
+    <h2 class="mb-4">Add Employee</h2>
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="mb-4">
+        <div class="mb-3">
+            <label>First Name:</label>
+            <input formControlName="firstname" required class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label>Last Name:</label>
+            <input formControlName="lastname" required class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label>Salary:</label>
+            <input formControlName="salary" type="number" required class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label>Account Number:</label>
+            <input formControlName="accountnumber" required class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label>Email:</label>
+            <input formControlName="email" required class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label>Balance:</label>
+            <input formControlName="balance" type="number" required class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label>Client Registration Number:</label>
+            <input formControlName="clientRegistrationNumber" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">{{ isEditing ? 'Update Employee' : 'Add Employee' }}</button>
+    </form>
+
+    <h3 class="mb-4">Employee List</h3>
+    <table class="table table-bordered table-striped">
+        <thead class="table-light">
+            <tr>
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>Balance</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employees" [ngClass]="{'blurred': !employee.isActive}">
+                <td>{{ employee.employeeId }}</td>
+                <td>{{ employee.firstname }}</td>
+                <td>{{ employee.lastname }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.salary }}</td>
+                <td>{{ employee.balance }}</td>
+                <td>
+                    <span [ngClass]="{'text-success': employee.isActive, 'text-danger': !employee.isActive}">
+                        {{ employee.isActive ? 'Active' : 'Inactive' }}
+                    </span>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="toggleEmployeeStatus(employee)">
+                        {{ employee.isActive ? 'Delete' : 'Activate' }}
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <style>.blurred {
+        opacity: 0.5; /* Makes the employee row look faded */
+        pointer-events: none; /* Disables any mouse events */
+    }
+    
+    .btn-danger {
+        background-color: #f44336; /* Red background for delete button */
+        color: white;
+    }
+    
+    .btn-danger:hover {
+        background-color: #c62828; /* Darker red on hover */
+    }
+    
+    .btn-primary {
+        background-color: #007bff; /* Blue background for primary button */
+        color: white;
+    }
+    
+    .btn-primary:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+    
+    /* Optional: Add some padding to the table for better visual spacing */
+    .table {
+        margin-top: 20px;
+    }
+    </style>

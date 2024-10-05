@@ -1,0 +1,38 @@
+<div class="approve-kyc-status">
+    <h2>Pending KYC Clients</h2>
+  
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Registration Number</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>KYC Status</th>
+          <th>Actions</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of clients">
+          <td>{{ client.registrationNumber }}</td>
+          <td>{{ client.firstName }}</td>
+          <td>{{ client.lastName }}</td>
+          <td>{{ client.kycStatus }}</td>
+          <td>
+            <button class="btn btn-success" (click)="approveKyc(client.registrationNumber)">Approve</button>
+            <button class="btn btn-danger" (click)="rejectKyc(client.registrationNumber)">Reject</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="clients.length === 0" class="alert alert-info">
+      No pending KYC clients found.
+    </div>
+  </div>
+  <button>Show document</button>
+  
